@@ -203,6 +203,8 @@ export default {
 				tilt: "tilt 10s ease-in-out infinite",
 				"pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
 				blink: "blink 3s infinite",
+				'cursor-blink': 'cursor-blink 1.2s steps(2, jump-none) infinite',
+				'animate-blink': 'animate-blink 1s infinite',
 			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
