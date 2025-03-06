@@ -23,6 +23,39 @@ const Navbar = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
+	// Close mobile menu when scrolling
+	useEffect(() => {
+		const closeMenuOnScroll = () => {
+			if (isMobileMenuOpen) {
+				setIsMobileMenuOpen(false);
+			}
+		};
+
+		window.addEventListener("scroll", closeMenuOnScroll);
+		return () => window.removeEventListener("scroll", closeMenuOnScroll);
+	}, [isMobileMenuOpen]);
+
+	// Close mobile menu when clicking outside
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			const mobileMenu = document.getElementById("mobile-menu");
+			const menuButton = document.getElementById("menu-button");
+			
+			if (
+				isMobileMenuOpen &&
+				mobileMenu &&
+				!mobileMenu.contains(event.target) &&
+				menuButton &&
+				!menuButton.contains(event.target)
+			) {
+				setIsMobileMenuOpen(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
+	}, [isMobileMenuOpen]);
+
 	return (
 		<header
 			className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out 
@@ -80,48 +113,87 @@ const Navbar = () => {
 
 				{/* Mobile Menu Button */}
 				<button
-					className="md:hidden btn-icon hover:bg-white/10 rounded-lg p-2 transition-colors duration-200"
+					id="menu-button"
+					className="md:hidden btn-icon hover:bg-white/10 rounded-lg p- transition-colors duration-200 relative z-50"
 					onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 					aria-label="Toggle menu"
 				>
-					{isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+					<div className="relative w-6 h-6">
+						<span 
+							className={`absolute block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out ${
+								isMobileMenuOpen ? 'top-3 rotate-45' : 'top-0.5'
+							}`}
+						/>
+						<span 
+							className={`absolute block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out top-2.5 ${
+								isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
+							}`}
+						/>
+						<span 
+							className={`absolute block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out ${
+								isMobileMenuOpen ? 'top-3 -rotate-45' : 'top-5'
+							}`}
+						/>
+					</div>
 				</button>
 			</div>
 
 			{/* Mobile Navigation */}
 			<div
-				className={`fixed inset-4 m-auto bg-theme-dark-bg/98 backdrop-blur-xl rounded-2xl border border-white/10 z-40 md:hidden flex flex-col justify-center items-center transition-all duration-500 ease-in-out ${
-					isMobileMenuOpen
-						? "opacity-100 scale-100"
-						: "opacity-0 scale-95 pointer-events-none"
+				id="mobile-menu"
+				className={`fixed inset-100 bg-theme-dark-bg/95 backdrop-blur-lg z-40 md:hidden transition-all duration-400 ease-in-out ${
+					isMobileMenuOpen 
+						? "opacity-100 translate-x-0" 
+						: "opacity-0 translate-x-full pointer-events-none"
 				}`}
 			>
-				<nav>
-					<ul className="flex flex-col items-center gap-8">
-						{navLinks.map((link) => (
-							<li key={link.name}>
+				<div className="flex flex-col h-full justify-center items-center pt-10 pr-32 pl-32 pb-20">
+					<nav className="w-full max-w-sm mx-auto">
+						<ul className="flex flex-col items-center gap-5">
+							{navLinks.map((link, index) => (
+								<li 
+									key={link.name}
+									className={`w-full transform transition-all duration-500 ease-in-out ${
+										isMobileMenuOpen 
+											? "translate-x-0 opacity-100" 
+											: "translate-x-8 opacity-0"
+									}`}
+									style={{ 
+										transitionDelay: isMobileMenuOpen ? `${index * 100}ms` : "0ms" 
+									}}
+								>
+									<a
+										href={link.href}
+										className="text-2xl font-medium block text-center py-3 border-b border-white/10 hover:text-theme-accent-primary hover:border-theme-accent-primary transition-all duration-300"
+										onClick={() => setIsMobileMenuOpen(false)}
+									>
+										{link.name}
+									</a>
+								</li>
+							))}
+							<li 
+								className={`mt-8 w-full text-center transform transition-all duration-500 ease-in-out ${
+									isMobileMenuOpen 
+										? "translate-y-0 opacity-100" 
+										: "translate-y-8 opacity-0"
+								}`}
+								style={{ 
+									transitionDelay: isMobileMenuOpen ? `${navLinks.length * 100 + 100}ms` : "0ms" 
+								}}
+							>
 								<a
-									href={link.href}
-									className="text-xl font-medium hover:text-theme-accent-primary transition-all duration-300 hover:scale-110 transform"
+									href="/resume.pdf"
+									className="inline-block btn-primary px-10 py-4 rounded-xl bg-gradient-to-r from-theme-accent-primary to-purple-500 hover:from-theme-accent-primary hover:to-pink-500 transition-all duration-300 hover:shadow-lg hover:shadow-theme-accent-primary/30"
+									target="_blank"
+									rel="noopener noreferrer"
 									onClick={() => setIsMobileMenuOpen(false)}
 								>
-									{link.name}
+									Resume
 								</a>
 							</li>
-						))}
-						<li className="mt-6">
-							<a
-								href="/resume.pdf"
-								className="btn-primary px-8 py-3 bg-gradient-to-r from-theme-accent-primary to-purple-500 hover:from-theme-accent-primary hover:to-pink-500 transition-all duration-300"
-								target="_blank"
-								rel="noopener noreferrer"
-								onClick={() => setIsMobileMenuOpen(false)}
-							>
-								Resume
-							</a>
-						</li>
-					</ul>
-				</nav>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</header>
 	);
