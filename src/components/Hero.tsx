@@ -215,16 +215,16 @@ const Hero = () => {
 							</span>
 						</a>
 					</div>
-
-					{/* Social icons with hover animations */}
-					<SocialIcons
-						className={`mt-6 sm:mt-10 justify-center gap-4 sm:gap-8 transition-all duration-700 delay-400 ${
-							inView
-								? "opacity-100 translate-y-0"
-								: "opacity-0 translate-y-8"
-						}`}
-					/>
 				</div>
+
+				{/* Social icons with hover animations */}
+				<SocialIcons
+					className={`mt-6 sm:mt-10 justify-center gap-4 sm:gap-8 transition-all duration-700 delay-400 ${
+						inView
+							? "opacity-100 translate-y-0"
+							: "opacity-0 translate-y-8"
+					}`}
+				/>
 
 				{/* Scroll down indicator with enhanced animation */}
 				<div className="absolute bottom-8 sm:bottom-12 left-0 right-0">
