@@ -15,17 +15,6 @@ const Skills = () => {
 		threshold: 0.1,
 	});
 
-	const technicalSkills = [
-		{ name: "Java", percentage: 90 },
-		{ name: "Python", percentage: 85 },
-		{ name: "JavaScript/TypeScript", percentage: 85 },
-		{ name: "React.js", percentage: 80 },
-		{ name: "Spring Boot", percentage: 75 },
-		{ name: "MySQL", percentage: 85 },
-		{ name: "Data Analysis", percentage: 70 },
-		{ name: "Git/GitHub", percentage: 80 },
-	];
-
 	const skillCategories = [
 		{
 			title: "Frontend Development",
@@ -34,7 +23,7 @@ const Skills = () => {
 				"React.js",
 				"HTML5",
 				"CSS3",
-        "Tailwind CSS",
+				"Tailwind CSS",
 				"JavaScript",
 				"TypeScript",
 				"Responsive Design",
@@ -50,7 +39,7 @@ const Skills = () => {
 				"Python",
 				"Node.js",
 				"Express.js",
-        "Microservices",
+				"Microservices",
 			],
 		},
 		{
@@ -58,7 +47,7 @@ const Skills = () => {
 			icon: Database,
 			skills: [
 				"MySQL",
-        "PostgreSQL",
+				"PostgreSQL",
 				"MongoDB",
 				"Database Design",
 				"SQL",
@@ -97,7 +86,7 @@ const Skills = () => {
 				"VS Code",
 				"IntelliJ IDEA",
 				"Postman",
-        "Notion",
+				"Notion",
 			],
 		},
 	];
@@ -108,17 +97,17 @@ const Skills = () => {
 			name: "React",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
 		},
-    {
+		{
 			id: "2",
 			name: "JavaScript",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
 		},
-    {
+		{
 			id: "3",
 			name: "TypeScript",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
 		},
-    {
+		{
 			id: "4",
 			name: "HTML5",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
@@ -128,17 +117,17 @@ const Skills = () => {
 			name: "CSS3",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
 		},
-    {
-      id: "6",
-      name: "Tailwind CSS",
-      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-    },
+		{
+			id: "6",
+			name: "Tailwind CSS",
+			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+		},
 		{
 			id: "7",
 			name: "Java",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
 		},
-    {
+		{
 			id: "8",
 			name: "Spring",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
@@ -153,17 +142,17 @@ const Skills = () => {
 			name: "Node.js",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
 		},
-    {
-      id: "11",
-      name: "Express.js",
-      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-    },
-    {
-      id: "12",
-      name: "PostgreSQL",
-      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-    },
-    {
+		{
+			id: "11",
+			name: "Express.js",
+			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+		},
+		{
+			id: "12",
+			name: "PostgreSQL",
+			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+		},
+		{
 			id: "13",
 			name: "MySQL",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
@@ -178,11 +167,11 @@ const Skills = () => {
 			name: "Git",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
 		},
-    {
-      id: "16",
-      name: "GitHub",
-      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-    },
+		{
+			id: "16",
+			name: "GitHub",
+			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+		},
 	];
 
 	const digitalBadges = [
