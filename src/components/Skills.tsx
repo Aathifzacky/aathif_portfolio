@@ -1,5 +1,4 @@
 import { useInView } from "react-intersection-observer";
-import SkillBar from "./SkillBar";
 import {
 	Code,
 	Database,
