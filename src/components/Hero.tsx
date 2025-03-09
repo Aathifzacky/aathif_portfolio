@@ -196,7 +196,7 @@ const Hero = () => {
 					>
 						<a
 							href="#projects"
-							className="btn-primary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-glow-primary hover:shadow-glow-primary-lg group transition-all duration-300"
+							className="btn-primary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-glow-primary hover:shadow-glow-primary-lg group transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
 						>
 							<span className="relative inline-flex items-center gap-2">
 								View Projects
@@ -205,7 +205,7 @@ const Hero = () => {
 						</a>
 						<a
 							href="/resume.pdf"
-							className="btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/30 group transition-all duration-300"
+							className="btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl backdrop-blur-sm border border-white/10 hover:border-theme-accent-secondary/50 group transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -231,11 +231,13 @@ const Hero = () => {
 					<div className="flex justify-center">
 						<a
 							href="#about"
-							className="btn-icon bg-theme-dark-surface/60 backdrop-blur-md hover:bg-theme-dark-surface group rounded-full border border-white/10 hover:border-white/30 transition-all duration-300 animate-bounce-slow"
+							className="btn-icon bg-theme-dark-surface/60 backdrop-blur-md hover:bg-theme-dark-surface/80 group rounded-full border border-white/10 hover:border-theme-accent-primary/50 transition-all duration-300 animate-bounce-slow relative overflow-hidden"
+							aria-label="Scroll to About section"
 						>
+							<span className="absolute inset-0 rounded-full bg-theme-accent-primary/20 animate-ping-slow opacity-75"></span>
 							<ChevronDown
 								size={24}
-								className="group-hover:translate-y-1 transition-transform"
+								className="group-hover:translate-y-1 transition-transform text-theme-accent-primary"
 							/>
 						</a>
 					</div>
