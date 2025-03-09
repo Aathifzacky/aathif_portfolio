@@ -62,26 +62,35 @@ const About = () => {
 								: "opacity-0 -translate-x-8"
 						}`}
 					>
-						<h3 className="text-2xl font-bold">My Background</h3>
-						<p className="text-theme-text-secondary">
-							As an undergraduate computer science student, I've
-							always been fascinated by the power of technology to
-							solve real-world problems. My journey in the tech
-							world began with simple programming exercises and
-							quickly evolved into building complex applications
-							that make a difference.
-						</p>
-						<p className="text-theme-text-secondary">
-							I specialize in software development, web
-							technologies, and data science, with a particular
-							interest in creating seamless user experiences and
-							leveraging data to drive decisions.
-						</p>
-						<p className="text-theme-text-secondary">
-							When I'm not coding, you'll find me exploring new
-							technologies, contributing to open-source projects,
-							or enhancing my skills through continuous learning.
-						</p>
+						<h3 className="text-2xl font-bold flex items-center">
+							<span className="w-6 h-1 bg-gradient-to-r from-theme-accent-primary to-theme-accent-secondary rounded-full mr-3"></span>
+							My Background
+						</h3>
+
+						<div className="bg-theme-dark-surface/60 backdrop-blur-sm rounded-xl p-5 border border-white/5 shadow-lg">
+							<p className="text-theme-text-secondary mb-4">
+								As an undergraduate computer science student,
+								I've always been fascinated by the power of
+								technology to solve real-world problems. My
+								journey in the tech world began with simple
+								programming exercises and quickly evolved into
+								building complex applications that make a
+								difference.
+							</p>
+							<p className="text-theme-text-secondary mb-4">
+								I specialize in software development, web
+								technologies, and data science, with a
+								particular interest in creating seamless user
+								experiences and leveraging data to drive
+								decisions.
+							</p>
+							<p className="text-theme-text-secondary">
+								When I'm not coding, you'll find me exploring
+								new technologies, contributing to open-source
+								projects, or enhancing my skills through
+								continuous learning.
+							</p>
+						</div>
 					</div>
 
 					<div
@@ -91,27 +100,28 @@ const About = () => {
 								: "opacity-0 translate-x-8"
 						}`}
 					>
-						<h3 className="text-2xl font-bold mb-6">
+						<h3 className="text-2xl font-bold mb-6 flex items-center">
+							<span className="w-6 h-1 bg-gradient-to-r from-theme-accent-primary to-theme-accent-secondary rounded-full mr-3"></span>
 							Education & Certifications
 						</h3>
-						<div className="relative pl-8 before:content-[''] before:absolute before:left-3 before:top-0 before:w-px before:h-full before:bg-theme-accent-primary/30">
+						<div className="relative pl-8 before:content-[''] before:absolute before:left-3 before:top-0 before:w-px before:h-full before:bg-gradient-to-b from-theme-accent-primary via-theme-accent-secondary to-theme-accent-primary/30">
 							{timelineItems.map((item, index) => (
 								<div
 									key={index}
-									className={`mb-8 relative transition-all duration-500`}
+									className={`mb-8 relative transition-all duration-500 hover:translate-x-1`}
 									style={{
 										transitionDelay: `${
 											400 + index * 150
 										}ms`,
 									}}
 								>
-									<div className="absolute -left-9 w-8 h-8 rounded-full bg-theme-dark-surface flex items-center justify-center border-2 border-theme-accent-primary">
+									<div className="absolute -left-9 w-8 h-8 rounded-full bg-theme-dark-surface flex items-center justify-center border-2 border-theme-accent-primary shadow-glow-sm">
 										<item.icon
 											size={14}
 											className="text-theme-accent-primary"
 										/>
 									</div>
-									<div className="card ml-1">
+									<div className="card bg-theme-dark-surface/60 backdrop-blur-sm border border-white/5 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300">
 										<div className="flex flex-wrap justify-between items-start mb-2">
 											<h4 className="text-lg font-bold">
 												{item.title}
@@ -131,21 +141,34 @@ const About = () => {
 							))}
 						</div>
 					</div>
-        </div>
+				</div>
 
-        <div className="mt-10 mx-auto max-w-md">
-					<div className="card bg-theme-dark-surface  border border-theme-accent-primary/10">
-						<Quote
-							size={24}
-							className="text-theme-accent-primary mb-4"
-						/>
-						<p className="text-lg font-medium italic">
-							"The technology you use impresses no one. The
-							experience you create with it is everything."
-						</p>
-						<p className="text-sm text-theme-text-secondary mt-2">
-							— Sean Gerety
-						</p>
+				<div className="mt-16 mx-auto max-w-md transform hover:scale-105 transition-all duration-300">
+					<div className="card bg-gradient-to-br from-theme-dark-surface to-theme-dark-surface/80 border border-theme-accent-primary/20 p-6 rounded-xl shadow-lg relative">
+						{/* Decorative elements */}
+						<div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-theme-accent-primary/20 flex items-center justify-center border border-theme-accent-primary/30">
+							<Quote
+								size={16}
+								className="text-theme-accent-primary"
+							/>
+						</div>
+						<div className="absolute -bottom-3 -right-3 w-8 h-8 rounded-full bg-theme-accent-secondary/20 flex items-center justify-center border border-theme-accent-secondary/30">
+							<Quote
+								size={16}
+								className="text-theme-accent-secondary transform rotate-180"
+							/>
+						</div>
+
+						{/* Quote content */}
+						<div className="pt-4">
+							<p className="text-lg font-medium italic text-center">
+								"The technology you use impresses no one. The
+								experience you create with it is everything."
+							</p>
+							<p className="text-sm text-theme-text-secondary mt-4 text-right">
+								— Sean Gerety
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
