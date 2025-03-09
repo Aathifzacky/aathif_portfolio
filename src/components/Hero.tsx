@@ -159,17 +159,17 @@ const Hero = () => {
 					</h1>
 
 					{/* Typewriter effect with improved styling */}
-					<div className="h-16 sm:h-24 mt-4 sm:mt-6">
+					<div className="text-xl md:text-2xl font-display text-foreground/90 mb-6 h-12 md:h-14 flex justify-center">
 						<TypewriterEffect
-							texts={[
+							text={[
 								"Software Developer",
 								"Web Developer",
 								"Data Science Enthusiast",
 								"Tech Enthusiast",
 								"Freelancer",
 							]}
-							speed={2000}
-							delay={1000}
+							delay={50}
+							className="inline-block text-3xl md:text-5xl lg:text-6xl font-bold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-theme-accent-primary via-purple-500 to-theme-accent-secondary bg-size-200"
 						/>
 					</div>
 
@@ -196,7 +196,7 @@ const Hero = () => {
 					>
 						<a
 							href="#projects"
-							className="btn-primary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-glow-primary hover:shadow-glow-primary-lg group transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
+							className="btn-primary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-glow-primary hover:shadow-glow-primary-lg group transition-all duration-300"
 						>
 							<span className="relative inline-flex items-center gap-2">
 								View Projects
@@ -205,7 +205,7 @@ const Hero = () => {
 						</a>
 						<a
 							href="/resume.pdf"
-							className="btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl backdrop-blur-sm border border-white/10 hover:border-theme-accent-secondary/50 group transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
+							className="btn-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/30 group transition-all duration-300"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -231,13 +231,11 @@ const Hero = () => {
 					<div className="flex justify-center">
 						<a
 							href="#about"
-							className="btn-icon bg-theme-dark-surface/60 backdrop-blur-md hover:bg-theme-dark-surface/80 group rounded-full border border-white/10 hover:border-theme-accent-primary/50 transition-all duration-300 animate-bounce-slow relative overflow-hidden"
-							aria-label="Scroll to About section"
+							className="btn-icon bg-theme-dark-surface/60 backdrop-blur-md hover:bg-theme-dark-surface group rounded-full border border-white/10 hover:border-white/30 transition-all duration-300 animate-bounce-slow"
 						>
-							<span className="absolute inset-0 rounded-full bg-theme-accent-primary/20 animate-ping-slow opacity-75"></span>
 							<ChevronDown
 								size={24}
-								className="group-hover:translate-y-1 transition-transform text-theme-accent-primary"
+								className="group-hover:translate-y-1 transition-transform"
 							/>
 						</a>
 					</div>
