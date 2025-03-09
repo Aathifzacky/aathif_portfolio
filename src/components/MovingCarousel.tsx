@@ -1,4 +1,3 @@
-
 import { useRef, useEffect } from "react";
 
 interface CarouselItem {
@@ -67,19 +66,21 @@ const MovingCarousel = ({
       >
         {duplicatedItems.map((item, index) => (
           <div
-        key={`${item.id}-${index}`}
-        className={`flex-shrink-0 flex flex-col items-center ${itemClassName}`}
+            key={`${item.id}-${index}`}
+            className={`flex-shrink-0 flex flex-col items-center ${itemClassName}`}
           >
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-full h-full object-contain"
-        />
-        <p className="text-xs mt-1 text-theme-text-secondary">{item.name}</p>
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-full object-contain"
+            />
+            <p className="text-xs mt-1 text-theme-text-secondary truncate max-w-full">
+              {item.name}
+            </p>
           </div>
         ))}
       </div>
-        </div>
+    </div>
   );
 };
 
