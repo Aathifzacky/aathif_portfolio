@@ -1,61 +1,70 @@
-import { useEffect, useState, useRef } from "react";
 
-interface TypewriterEffectProps {
-  texts: string[];
-  speed?: number;
+import { useState, useEffect } from 'react';
+
+interface TypeWriterProps {
+  text: string | string[];
   delay?: number;
+  infinite?: boolean;
   className?: string;
 }
 
-const TypewriterEffect = ({
-  texts,
-  speed = 3000,
-  delay = 1000,
-  className = "",
-}: TypewriterEffectProps) => {
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+const TypeWriter = ({
+  text,
+  delay = 10,
+  infinite = true,
+  className = '',
+}: TypeWriterProps) => {
+  const [currentText, setCurrentText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentArrayIndex, setCurrentArrayIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isWaiting, setIsWaiting] = useState(false);
 
   useEffect(() => {
-    const rotateText = () => {
-      setIsAnimating(true);
-      
-      timeoutRef.current = setTimeout(() => {
-        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-        setIsAnimating(false);
-      }, speed / 2);
-    };
+    let timeout: NodeJS.Timeout;
+    const textArray = Array.isArray(text) ? text : [text];
+    const currentString = textArray[currentArrayIndex];
 
-    timeoutRef.current = setTimeout(rotateText, delay);
+    if (isWaiting) {
+      timeout = setTimeout(() => {
+        setIsWaiting(false);
+        setIsDeleting(true);
+      }, 2000);
+      return () => clearTimeout(timeout);
+    }
 
-    const interval = setInterval(rotateText, speed + delay);
+    if (isDeleting) {
+      timeout = setTimeout(() => {
+        setCurrentText(currentString.substring(0, currentIndex - 1));
+        setCurrentIndex((prevIndex) => prevIndex - 1);
+        
+        if (currentIndex <= 1) {
+          setIsDeleting(false);
+          setCurrentArrayIndex((prevIndex) => (prevIndex + 1) % textArray.length);
+        }
+      }, delay / 2);
+    } else {
+      timeout = setTimeout(() => {
+        setCurrentText(currentString.substring(0, currentIndex + 1));
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+        
+        if (currentIndex >= currentString.length) {
+          if (infinite) {
+            setIsWaiting(true);
+          }
+        }
+      }, delay);
+    }
 
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      clearInterval(interval);
-    };
-  }, [texts, speed, delay]);
+    return () => clearTimeout(timeout);
+  }, [currentIndex, currentArrayIndex, isDeleting, isWaiting, text, delay, infinite]);
 
   return (
-    <div className={`relative h-16 overflow-hidden ${className}`}>
-      <div
-        className={`text-3xl md:text-5xl lg:text-6xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-theme-accent-primary to-theme-accent-secondary absolute w-full transition-transform duration-300 ${
-          isAnimating ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
-        }`}
-      >
-        {texts[currentTextIndex]}
-      </div>
-      <div
-        className={`text-2xl md:text-5xl lg:text-6xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-theme-accent-primary to-theme-accent-secondary absolute w-full transition-transform duration-300 ${
-          isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
-        }`}
-      >
-        {texts[(currentTextIndex + 2) % texts.length]}
-      </div>
+    <div className="inline-flex">
+      <span className={className}>{currentText}</span>
+      <span className="typing-cursor">&nbsp;</span>
     </div>
   );
 };
 
-export default TypewriterEffect;
+export default TypeWriter;
