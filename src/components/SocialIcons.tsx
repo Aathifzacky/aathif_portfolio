@@ -13,7 +13,7 @@ const SocialIcons = ({ className = "", iconSize = 20, staggered = false }: Socia
   const socialLinks = [
     {
       name: "GitHub",
-      url: "https://github.com/zackyaathif",
+      url: "https://github.com/Aathifzacky",
       icon: Github,
       hoverColor: "hover:text-[#24292e]",
       bgGlow: "group-hover:shadow-[0_0_15px_rgba(36,41,46,0.5)]"
