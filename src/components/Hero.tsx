@@ -66,22 +66,8 @@ const Hero = () => {
 	return (
 		<section
 			id="home"
-			className="relative min-h-screen overflow-hidden px-4 sm:px-6"
+			className="relative min-h-screen overflow-hidden top-5 px-4 sm:px-6"
 		>
-			{/* Animated background with grid pattern */}
-			<div className="absolute inset-0 bg-grid-pattern opacity-30" />
-
-			{/* Gradient overlay with parallax effect */}
-			<div
-				className="absolute inset-0 bg-gradient-to-b from-theme-dark-bg/90 via-theme-dark-bg/95 to-theme-dark-bg backdrop-blur-sm"
-				style={{
-					transform: `translate(${mousePosition.x * -10}px, ${
-						mousePosition.y * -10
-					}px)`,
-					transition: "transform 0.2s ease-out",
-				}}
-			/>
-
 			{/* Animated orbs/blobs in background */}
 			<div
 				className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-theme-accent-primary/10 blur-3xl animate-blob"
@@ -163,7 +149,7 @@ const Hero = () => {
 							Hi, I'm{" "}
 							<span className="relative">
 								<span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-theme-accent-primary via-purple-500 to-theme-accent-secondary bg-size-200 animate-gradient-x">
-									Aathif
+								Zacky Mohamed Aathif
 								</span>
 								<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-accent-primary to-theme-accent-secondary rounded-full transform scale-x-0 origin-left animate-expand-line"></span>
 							</span>
@@ -231,7 +217,7 @@ const Hero = () => {
 
 				{/* Social icons with hover animations */}
 				<SocialIcons
-					className={`mt-4 sm:mt-10 justify-center gap-3 sm:gap-8 transition-all duration-700 delay-400 ${
+					className={`justify-center gap-3 sm:gap-8 transition-all duration-700 delay-400 ${
 						inView
 							? "opacity-100 translate-y-0"
 							: "opacity-0 translate-y-8"
@@ -239,7 +225,7 @@ const Hero = () => {
 				/>
 
 				{/* Scroll down indicator with enhanced animation */}
-				<div className="absolute bottom-6 sm:bottom-12 left-0 right-0">
+				<div className="absolute bottom-4 sm:bottom-8 left-0 right-0">
 					<div className="flex justify-center">
 						<a
 							href="#about"
@@ -255,7 +241,7 @@ const Hero = () => {
 			</div>
 
 			{/* Mobile tech stack display - only on mobile */}
-			<div className="absolute bottom-24 left-0 right-0 flex justify-center lg:hidden">
+			<div className="absolute bottom-20 left-0 right-0 flex justify-center lg:hidden">
 				<div className="flex flex-wrap justify-center gap-2 px-2 max-w-xs">
 					{techIcons.map((tech, index) => (
 						<div

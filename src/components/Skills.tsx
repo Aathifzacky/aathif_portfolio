@@ -224,7 +224,9 @@ const Skills = () => {
 							className="text-theme-accent-primary"
 						/>
 					</div>
-					<h4 className="text-base md:text-lg font-bold">{category.title}</h4>
+					<h4 className="text-base md:text-lg font-bold">
+						{category.title}
+					</h4>
 				</div>
 				<ul className="space-y-1 md:space-y-2">
 					{category.skills.map((skill) => (
@@ -248,8 +250,8 @@ const Skills = () => {
 		>
 			{/* Background decorative elements */}
 			<div className="absolute inset-0 pointer-events-none">
-				<div className="absolute top-0 left-1/4 w-60 md:w-80 h-60 md:h-80 bg-theme-accent-primary/5 rounded-full blur-3xl"></div>
-				<div className="absolute bottom-0 right-1/4 w-72 md:w-96 h-72 md:h-96 bg-theme-accent-secondary/5 rounded-full blur-3xl"></div>
+				<div className="absolute top-24 left-1/4 w-60 md:w-80 h-60 md:h-80 bg-theme-accent-secondary/5 rounded-full blur-3xl"></div>
+				<div className="absolute bottom-32 right-2/4 w-72 md:w-96 h-72 md:h-96 bg-theme-accent-secondary/5 rounded-full blur-3xl"></div>
 				<div className="absolute top-1/3 right-1/3 w-48 md:w-64 h-48 md:h-64 bg-purple-500/5 rounded-full blur-3xl"></div>
 			</div>
 

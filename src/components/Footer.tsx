@@ -14,7 +14,7 @@ const Footer = () => {
               className="text-xl font-bold relative group"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-theme-accent-primary via-purple-500 to-pink-500">
-                Zacky.
+                Aathif.
               </span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-theme-accent-primary via-purple-500 to-pink-500 group-hover:w-full transition-all duration-500 ease-out" />
             </a>

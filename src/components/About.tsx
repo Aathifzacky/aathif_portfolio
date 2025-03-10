@@ -29,8 +29,14 @@ const About = () => {
 	return (
 		<section
 			id="about"
-			className="section-container bg-theme-dark-surface/30 px-4 sm:px-6 md:px-8"
+			className="section-container px-4 sm:px-6 md:px-8 relative overflow-hidden"
 		>
+			{/* Background gradient blurs */}
+			<div className="absolute inset-0 pointer-events-none">
+				<div className="absolute top-20 left-1/4 w-60 md:w-80 h-60 md:h-80 bg-theme-accent-secondary/5 rounded-full blur-3xl"></div>
+				<div className="absolute bottom-32 right-1/4 w-48 md:w-64 h-48 md:h-64 bg-theme-accent-secondary/5 rounded-full blur-3xl"></div>
+			</div>
+
 			<div ref={ref} className="max-w-5xl mx-auto">
 				<div className="text-center mb-8 md:mb-16">
 					<h2

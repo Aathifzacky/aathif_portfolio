@@ -71,18 +71,16 @@ const Navbar = () => {
 				rounded-2xl
 				backdrop-blur-xl
 				border border-white/[0.08]
-				shadow-[0_8px_32px_rgba(0,0,0,0.12)]
 				px-4 md:px-6 py-4
 				${isScrolled ? "bg-theme-dark-bg/90" : "bg-theme-dark-bg/75"}
 				flex items-center justify-between
 				transition-all duration-300 ease-out
 				hover:border-white/[0.12]
-				hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)]
     `}
 			>
 				<a href="#home" className="text-2xl font-bold relative group">
 					<span className="bg-clip-text text-transparent bg-gradient-to-r from-theme-accent-primary via-purple-500 to-pink-500">
-						Zacky.
+						Aathif
 					</span>
 					<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-theme-accent-primary via-purple-500 to-pink-500 group-hover:w-full transition-all duration-500 ease-out" />
 				</a>
