@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import SocialIcons from "./SocialIcons";
 
 const Navbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -118,7 +118,7 @@ const Navbar = () => {
 				{/* Mobile Menu Button */}
 				<button
 					id="menu-button"
-					className="md:hidden btn-icon hover:bg-white/10 rounded-lg p- transition-colors duration-200 relative z-50"
+					className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-theme-accent-primary/20 to-purple-500/20 hover:from-theme-accent-primary/30 hover:to-pink-500/30 transition-all duration-300"
 					onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 					aria-label="Toggle menu"
 				>
@@ -145,15 +145,15 @@ const Navbar = () => {
 			{/* Mobile Navigation */}
 			<div
 				id="mobile-menu"
-				className={`fixed inset-100 bg-theme-dark-bg/95 backdrop-blur-lg z-40 md:hidden transition-all duration-400 ease-in-out ${
+				className={`fixed top-20 left-0 w-full h-screen rounded-2xl bg-gradient-to-b from-theme-dark-bg/95 to-theme-dark-bg backdrop-blur-lg z-40 md:hidden transition-all duration-500 ease-in-out ${
 					isMobileMenuOpen
-						? "opacity-100 translate-x-0"
-						: "opacity-0 translate-x-full pointer-events-none"
+						? "opacity-100 visible translate-y-0"
+						: "opacity-0 invisible -translate-y-full"
 				}`}
 			>
-				<div className="flex flex-col h-full justify-center items-center pt-10 pr-32 pl-32 pb-20">
-					<nav className="w-full max-w-sm mx-auto">
-						<ul className="flex flex-col items-center gap-5">
+				<div className="flex flex-col h-full justify-center items-center pt-24 px-8 pb-20">
+					<div className="w-full max-w-xs mx-auto">
+						<ul className="grid gap-4">
 							{navLinks.map((link, index) => (
 								<li
 									key={link.name}
@@ -164,45 +164,64 @@ const Navbar = () => {
 									}`}
 									style={{
 										transitionDelay: isMobileMenuOpen
-											? `${index * 100}ms`
+											? `${index * 50}ms`
 											: "0ms",
 									}}
 								>
 									<a
 										href={link.href}
-										className="text-2xl font-medium block text-center py-3 border-b border-white/10 hover:text-theme-accent-primary hover:border-theme-accent-primary transition-all duration-300"
+										className="flex items-center justify-center h-14 bg-white/5 rounded-xl border border-white/10 hover:bg-gradient-to-r hover:from-theme-accent-primary/20 hover:to-purple-500/20 hover:border-theme-accent-primary/30 hover:text-theme-accent-primary transition-all duration-300"
 										onClick={() =>
 											setIsMobileMenuOpen(false)
 										}
 									>
-										{link.name}
+										<span className="text-lg font-medium">
+											{link.name}
+										</span>
 									</a>
 								</li>
 							))}
-							<li
-								className={`mt-8 w-full text-center transform transition-all duration-500 ease-in-out ${
-									isMobileMenuOpen
-										? "translate-y-0 opacity-100"
-										: "translate-y-8 opacity-0"
-								}`}
-								style={{
-									transitionDelay: isMobileMenuOpen
-										? `${navLinks.length * 100 + 100}ms`
-										: "0ms",
-								}}
-							>
-								<a
-									href="/resume.pdf"
-									className="inline-block btn-primary px-10 py-4 rounded-xl bg-gradient-to-r from-theme-accent-primary to-purple-500 hover:from-theme-accent-primary hover:to-pink-500 transition-all duration-300 hover:shadow-lg hover:shadow-theme-accent-primary/30"
-									target="_blank"
-									rel="noopener noreferrer"
-									onClick={() => setIsMobileMenuOpen(false)}
-								>
-									Resume
-								</a>
-							</li>
 						</ul>
-					</nav>
+
+						<div
+							className={`mt-12 w-full text-center transform transition-all duration-500 ease-in-out ${
+								isMobileMenuOpen
+									? "translate-y-0 opacity-100"
+									: "translate-y-8 opacity-0"
+							}`}
+							style={{
+								transitionDelay: isMobileMenuOpen
+									? `${navLinks.length * 50 + 100}ms`
+									: "0ms",
+							}}
+						>
+							<a
+								href="/resume.pdf"
+								className="inline-block w-full py-4 rounded-xl bg-gradient-to-r from-theme-accent-primary to-purple-500 hover:from-theme-accent-primary hover:to-pink-500 transition-all duration-300 hover:shadow-lg hover:shadow-theme-accent-primary/30 text-white font-medium"
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={() => setIsMobileMenuOpen(false)}
+							>
+								Resume
+							</a>
+						</div>
+
+						<div
+							className={`mt-12 flex justify-center space-x-4 transform transition-all duration-500 ease-in-out ${
+								isMobileMenuOpen
+									? "translate-y-0 opacity-100"
+									: "translate-y-8 opacity-0"
+							}`}
+							style={{
+								transitionDelay: isMobileMenuOpen
+									? `${navLinks.length * 50 + 200}ms`
+									: "0ms",
+							}}
+						>
+							{/* Social Icons */}
+							<SocialIcons className="mb-4 justify-center md:justify-end gap-4" />
+						</div>
+					</div>
 				</div>
 			</div>
 		</header>
