@@ -146,6 +146,7 @@ const Skills = () => {
 			id: "11",
 			name: "Express.js",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+			className: "invert",
 		},
 		{
 			id: "12",
@@ -171,6 +172,7 @@ const Skills = () => {
 			id: "16",
 			name: "GitHub",
 			image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+			className: "invert",
 		},
 	];
 
