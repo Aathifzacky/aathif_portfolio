@@ -28,6 +28,7 @@ export const projects: Project[] = [
 		],
 		githubUrl: "https://github.com/zackyaathif/university-prediction",
 		category: "data-science",
+		liveUrl: "https://zackyaathif.com",
 		featured: true,
 	},
 	{
