@@ -56,7 +56,7 @@ const Projects = () => {
 	return (
 		<section
 			id="projects"
-			className="section-container relative overflow-hidden px-4 sm:px-6"
+			className="section-container relative overflow-hidden px-3 xs:px-4 sm:px-6"
 		>
 			{/* Background decorative elements */}
 			<div className="absolute inset-0 pointer-events-none">
@@ -110,7 +110,7 @@ const Projects = () => {
 						</div>
 						<div className="bg-theme-dark-surface/40 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/5 shadow-lg">
 							<div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-8">
-								<div className="lg:col-span-3 h-48 sm:h-64 lg:h-80 overflow-hidden rounded-lg relative">
+								<div className="lg:col-span-3 overflow-hidden rounded-lg relative aspect-[16/9] sm:aspect-[16/10] lg:aspect-[16/9]">
 									<img
 										src={featuredProject.images[0]}
 										alt={featuredProject.title}
@@ -136,7 +136,7 @@ const Projects = () => {
 												(tech) => (
 													<span
 														key={tech}
-														className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-theme-dark-bg/80 text-xs border border-white/10 rounded-md"
+														className="px-1 py-0.5 sm:px-1.5 sm:py-0.5 md:px-2 md:py-1 bg-theme-dark-bg/80 text-[10px] xs:text-xs border border-white/10 rounded-md whitespace-nowrap"
 													>
 														{tech}
 													</span>
@@ -176,12 +176,12 @@ const Projects = () => {
 						<Filter size={14} className="sm:w-4 sm:h-4" />
 						<span className="text-xs sm:text-sm">Filter by:</span>
 					</div>
-					<div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+					<div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 md:gap-3">
 						{categories.map((category) => (
 							<button
 								key={category.id}
 								onClick={() => setActiveFilter(category.id)}
-								className={`px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm rounded-full transition-all duration-300 ${
+								className={`px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1.5 text-xs sm:text-sm rounded-full transition-all duration-300 ${
 									activeFilter === category.id
 										? "bg-theme-accent-primary text-black shadow-glow-sm"
 										: "bg-theme-dark-surface/60 text-theme-text-secondary hover:bg-theme-dark-surface border border-white/5"
@@ -195,7 +195,7 @@ const Projects = () => {
 
 				{/* Project Grid with improved mobile spacing */}
 				<div
-					className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 transition-all duration-700 delay-400 ${
+					className={`grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 transition-all duration-700 delay-400 ${
 						inView
 							? "opacity-100 translate-y-0"
 							: "opacity-0 translate-y-8"
@@ -229,7 +229,7 @@ const Projects = () => {
 					>
 						<button
 							onClick={loadMore}
-							className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-theme-dark-surface/60 hover:bg-theme-dark-surface/80 border border-white/10 hover:border-theme-accent-primary/30 rounded-lg sm:rounded-xl transition-all duration-300 group shadow-lg hover:shadow-xl text-sm sm:text-base"
+							className="inline-flex items-center gap-1 xs:gap-1.5 sm:gap-2 px-3 py-1.5 xs:px-4 xs:py-2 sm:px-6 sm:py-3 bg-theme-dark-surface/60 hover:bg-theme-dark-surface/80 border border-white/10 hover:border-theme-accent-primary/30 rounded-lg sm:rounded-xl transition-all duration-300 group shadow-lg hover:shadow-xl text-xs xs:text-sm sm:text-base"
 						>
 							<span className="font-medium">
 								Show More Projects
