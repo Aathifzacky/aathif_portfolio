@@ -6,14 +6,36 @@ import {
 	Terminal,
 	ScanText,
 	Braces,
+	ChevronDown,
+	ChevronUp,
 } from "lucide-react";
 import MovingCarousel from "./MovingCarousel";
+import { useState, useEffect } from "react";
 
 const Skills = () => {
 	const [ref, inView] = useInView({
 		triggerOnce: true,
 		threshold: 0.1,
 	});
+
+	const [showAllSkills, setShowAllSkills] = useState(false);
+	const [isMobile, setIsMobile] = useState(false);
+
+	// Check if the viewport is mobile size
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth < 640); // sm breakpoint
+		};
+
+		checkMobile();
+		window.addEventListener("resize", checkMobile);
+		return () => window.removeEventListener("resize", checkMobile);
+	}, []);
+
+	// Reset showAllSkills when switching between mobile and desktop
+	useEffect(() => {
+		setShowAllSkills(false);
+	}, [isMobile]);
 
 	const skillCategories = [
 		{
@@ -316,14 +338,36 @@ const Skills = () => {
 							Skill Categories
 						</h3>
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-							{skillCategories.map((category, index) => (
-								<SkillCard
-									key={category.title}
-									category={category}
-									index={index}
-								/>
-							))}
+							{skillCategories
+								.filter(
+									(_, index) =>
+										!isMobile || showAllSkills || index < 3
+								)
+								.map((category, index) => (
+									<SkillCard
+										key={category.title}
+										category={category}
+										index={index}
+									/>
+								))}
 						</div>
+
+						{isMobile && (
+							<button
+								onClick={() => setShowAllSkills(!showAllSkills)}
+								className="flex items-center justify-center gap-2 mx-auto mt-6 px-4 py-2 rounded-lg bg-theme-dark-surface/40 border border-white/10 hover:border-theme-accent-primary/50 transition-all duration-300 text-sm"
+							>
+								{showAllSkills ? (
+									<>
+										Show Less <ChevronUp size={16} />
+									</>
+								) : (
+									<>
+										Show More <ChevronDown size={16} />
+									</>
+								)}
+							</button>
+						)}
 					</div>
 				</div>
 
