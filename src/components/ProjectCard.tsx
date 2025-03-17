@@ -12,6 +12,7 @@ interface ProjectCardProps {
 	githubUrl: string;
 	liveUrl?: string;
 	index: number;
+	status?: "completed" | "in-progress" | "planned"; // New status property
 }
 
 const ProjectCard = ({
@@ -23,6 +24,7 @@ const ProjectCard = ({
 	githubUrl,
 	liveUrl,
 	index,
+	status = "completed", // Default to completed if not specified
 }: ProjectCardProps) => {
 	const [ref, inView] = useInView({
 		triggerOnce: true,
@@ -54,6 +56,33 @@ const ProjectCard = ({
 		};
 	}, [inView, images.length, isHovering]);
 
+	// Map status to display text and styles
+	const getStatusDetails = () => {
+		switch (status) {
+			case "in-progress":
+				return {
+					text: "IN PROGRESS",
+					bgColor: "bg-amber-500",
+					textColor: "text-black",
+				};
+			case "planned":
+				return {
+					text: "PLANNED",
+					bgColor: "bg-blue-500",
+					textColor: "text-white",
+				};
+			case "completed":
+			default:
+				return {
+					text: "COMPLETED",
+					bgColor: "bg-green-500",
+					textColor: "text-black",
+				};
+		}
+	};
+
+	const statusDetails = getStatusDetails();
+
 	// Animation delay based on card index (staggered appearance)
 	const animationDelay = index * 150;
 
@@ -77,6 +106,15 @@ const ProjectCard = ({
 					</div>
 				</div>
 			)}
+
+			{/* Status badge */}
+			<div className="absolute top-2 sm:top-3 right-0 z-10">
+				<div
+					className={`${statusDetails.bgColor} ${statusDetails.textColor} text-xs font-bold py-0.5 sm:py-1 px-3 sm:px-4 rounded-l-md shadow-md`}
+				>
+					{statusDetails.text}
+				</div>
+			</div>
 
 			{/* Image carousel with improved transitions - reduced height on mobile */}
 			<div className="relative h-44 sm:h-52 md:h-60 overflow-hidden">
@@ -170,18 +208,20 @@ const ProjectCard = ({
 				{/* Action buttons - mobile optimized */}
 				<div className="flex items-center justify-between mt-3 sm:mt-5 pt-2 sm:pt-3 border-t border-white/5">
 					<div className="flex items-center gap-1.5 sm:gap-2">
-						<a
-							href={githubUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="btn-icon w-8 h-8 sm:w-10 sm:h-10 bg-theme-dark-bg/50 hover:bg-theme-dark-bg border border-white/10 hover:border-white/30 group/btn transition-all duration-300"
-							aria-label={`View ${title} source code on GitHub`}
-						>
-							<Github
-								size={16}
-								className="transition-all duration-300 group-hover/btn:scale-110 group-hover/btn:rotate-3"
-							/>
-						</a>
+						{githubUrl && githubUrl.trim() !== "" && (
+							<a
+								href={githubUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="btn-icon w-8 h-8 sm:w-10 sm:h-10 bg-theme-dark-bg/50 hover:bg-theme-dark-bg border border-white/10 hover:border-white/30 group/btn transition-all duration-300"
+								aria-label={`View ${title} source code on GitHub`}
+							>
+								<Github
+									size={16}
+									className="transition-all duration-300 group-hover/btn:scale-110 group-hover/btn:rotate-3"
+								/>
+							</a>
+						)}
 						{liveUrl && (
 							<a
 								href={liveUrl}

@@ -7,6 +7,7 @@ interface Project {
 	liveUrl?: string;
 	category: string;
 	featured?: boolean;
+	status?: "completed" | "in-progress" | "planned";
 }
 
 export const projects: Project[] = [
@@ -28,6 +29,7 @@ export const projects: Project[] = [
 		category: "web",
 		liveUrl: "https://asyncat.com",
 		featured: true,
+		status: "completed",
 	},
 	{
 		title: "Hilda Guest - Hotel Booking App",
@@ -46,6 +48,7 @@ export const projects: Project[] = [
 		category: "corporate",
 		liveUrl: "https://hildaguest.netlify.app/",
 		technologies: ["React", "TailwindCSS", "Supabase", "Stripe", "Netlify"],
+		status: "in-progress",
 	},
 	{
 		title: "TrekTracks - AI-Powered Travel Companion App",
@@ -61,6 +64,7 @@ export const projects: Project[] = [
 		technologies: ["React", "TailwindCSS", "Framer Motion", "Netlify"],
 		category: "web",
 		liveUrl: "https://trektracks.netlify.app/",
+		status: "completed",
 	},
 	{
 		title: "Shoreline Analysis - Environmental Monitoring Platform",
@@ -82,6 +86,7 @@ export const projects: Project[] = [
 		technologies: ["React", "TailwindCSS", "Chart.js"],
 		category: "web",
 		liveUrl: "https://coastwise.netlify.app/",
+		status: "in-progress",
 	},
 	{
 		title: "Plane Management System",
@@ -95,6 +100,7 @@ export const projects: Project[] = [
 		technologies: ["Java", "OOP", "MySQL", "MVC Architecture"],
 		githubUrl: "https://github.com/Aathifzacky/Plane-Management",
 		category: "others",
+		status: "completed",
 	},
 	{
 		title: "Ticketing Simulation System",
@@ -116,6 +122,7 @@ export const projects: Project[] = [
 		],
 		githubUrl: "https://github.com/zackyaathif/ticketing-system",
 		category: "web",
+		status: "completed",
 	},
 ];
 

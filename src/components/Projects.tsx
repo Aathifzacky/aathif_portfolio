@@ -209,9 +209,10 @@ const Projects = () => {
 							image={project.images[0]}
 							images={project.images}
 							technologies={project.technologies}
-							githubUrl={project.githubUrl}
+							githubUrl={project.githubUrl || ""}
 							liveUrl={project.liveUrl}
 							index={index}
+							status={project.status || "completed"}
 						/>
 					))}
 				</div>
