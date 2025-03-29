@@ -186,7 +186,7 @@ const Hero = () => {
 
 					{/* Enhanced buttons with mobile optimization */}
 					<div
-						className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-6 sm:mt-8 transition-all duration-700 delay-300 ${
+						className={`flex flex-col sm:flex-row items-center justify-center mt-6 sm:mt-8 transition-all duration-700 delay-300 ${
 							inView
 								? "opacity-100 translate-y-0"
 								: "opacity-0 translate-y-8"
@@ -199,17 +199,6 @@ const Hero = () => {
 							<span className="relative inline-flex items-center gap-2">
 								View Projects
 								<ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-							</span>
-						</a>
-						<a
-							href="/resume.pdf"
-							className="btn-secondary w-full sm:w-auto px-5 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-lg rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/30 group transition-all duration-300"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span className="relative inline-flex items-center gap-2">
-								Download CV
-								<Download className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
 							</span>
 						</a>
 					</div>
