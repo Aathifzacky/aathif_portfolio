@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { Send, CheckCircle, XCircle, MapPin, Mail, Phone } from "lucide-react";
+import { Send, MapPin, Mail, Phone } from "lucide-react";
 import SocialIcons from "./SocialIcons";
 import { useToast } from "../hooks/use-toast";
 
@@ -17,10 +17,7 @@ const Contact = () => {
 		message: "",
 	});
 
-	const [formStatus, setFormStatus] = useState<{
-		status: "idle" | "submitting" | "success" | "error";
-		message: string;
-	}>({
+	const [formStatus, setFormStatus] = useState({
 		status: "idle",
 		message: "",
 	});
@@ -32,31 +29,67 @@ const Contact = () => {
 		setFormState((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setFormStatus({ status: "submitting", message: "" });
 
-		// Simulate form submission
-		setTimeout(() => {
-			if (Math.random() > 0.1) {
-				// 90% success rate for demo
+		try {
+			const formData = new FormData();
+			// Add Web3Forms access key
+			formData.append(
+				"access_key",
+				"f94b871d-841e-477a-bde2-53280544462d"
+			);
+			// Add form fields
+			formData.append("name", formState.name);
+			formData.append("email", formState.email);
+			formData.append("message", formState.message);
+			// Optional: Add subject
+			formData.append("subject", "New contact form submission");
+
+			const response = await fetch("https://api.web3forms.com/submit", {
+				method: "POST",
+				body: formData,
+			});
+
+			const data = await response.json();
+
+			if (data.success) {
 				toast({
 					title: "Message Sent!",
-					description: "Thank you for reaching out. I'll be in touch soon!",
+					description:
+						"Thank you for reaching out. I'll be in touch soon!",
 					variant: "default",
 				});
-				setFormStatus({ status: "idle", message: "" });
+				setFormStatus({
+					status: "success",
+					message: "Form submitted successfully",
+				});
 				setFormState({ name: "", email: "", message: "" });
 			} else {
 				toast({
 					title: "Error!",
 					description:
+						data.message ||
 						"There was an error sending your message. Please try again.",
 					variant: "destructive",
 				});
-				setFormStatus({ status: "idle", message: "" });
+				setFormStatus({ status: "error", message: data.message });
 			}
-		}, 1500);
+		} catch (error) {
+			toast({
+				title: "Error!",
+				description:
+					"There was an error sending your message. Please try again.",
+				variant: "destructive",
+			});
+			setFormStatus({
+				status: "error",
+				message: "Failed to submit the form",
+			});
+		} finally {
+			setFormStatus((prev) => ({ ...prev, status: "idle" }));
+		}
 	};
 
 	const contactInfo = [
@@ -92,8 +125,6 @@ const Contact = () => {
 
 			<div ref={ref} className="max-w-6xl mx-auto relative z-10">
 				<div className="text-center mb-12 md:mb-20">
-					{" "}
-					{/* Reduced margin on mobile */}
 					<h2
 						className={`text-4xl md:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-theme-accent-primary to-theme-accent-secondary bg-clip-text text-transparent transition-all duration-700 ${
 							inView
@@ -116,7 +147,7 @@ const Contact = () => {
 				</div>
 
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
-					{/* Contact Info Section - Update padding and spacing */}
+					{/* Contact Info Section */}
 					<div
 						className={`bg-theme-dark-surface/50 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-white/5 shadow-lg transition-all duration-700 delay-200 ${
 							inView
@@ -169,7 +200,7 @@ const Contact = () => {
 						</div>
 					</div>
 
-					{/* Contact Form Section - Update padding and spacing */}
+					{/* Contact Form Section with Web3Forms */}
 					<div
 						className={`bg-theme-dark-surface/50 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-white/5 shadow-lg transition-all duration-700 delay-300 ${
 							inView
@@ -182,6 +213,13 @@ const Contact = () => {
 						</h3>
 
 						<form onSubmit={handleSubmit} className="space-y-6">
+							{/* Hidden honeypot field for spam prevention */}
+							<input
+								type="hidden"
+								name="botcheck"
+								style={{ display: "none" }}
+							/>
+
 							<div className="group">
 								<label
 									htmlFor="name"
